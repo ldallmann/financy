@@ -1,0 +1,92 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-base: #1f6f43;
+  --color-brand-dark: #124b2b;
+
+  --color-gray-100: #f8f9fa;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #111827;
+
+  --color-danger: #ef4444;
+  --color-success: #19ad70;
+
+  --color-blue-dark: #1d4ed8;
+  --color-blue-base: #2563eb;
+  --color-blue-light: #dbeafe;
+
+  --color-purple-dark: #7e22ce;
+  --color-purple-base: #9333ea;
+  --color-purple-light: #f3e8ff;
+
+  --color-pink-dark: #be185d;
+  --color-pink-base: #db2777;
+  --color-pink-light: #fce7f3;
+
+  --color-red-dark: #b91c1c;
+  --color-red-base: #dc2626;
+  --color-red-light: #fee2e2;
+
+  --color-orange-dark: #c2410c;
+  --color-orange-base: #ea580c;
+  --color-orange-light: #ffedd5;
+
+  --color-yellow-dark: #a16207;
+  --color-yellow-base: #ca8a04;
+  --color-yellow-light: #f7f3ca;
+
+  --color-green-dark: #15803d;
+  --color-green-base: #16a34a;
+  --color-green-light: #e0fae9;
+
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl: 1.75rem;
+  --text-3xl--line-height: 2rem;
+
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+
+  html {
+    @apply font-sans antialiased;
+  }
+
+  body {
+    @apply min-h-screen bg-gray-100 text-gray-800;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    @apply text-gray-400;
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator {
+    @apply cursor-pointer opacity-60;
+  }
+}
+
+@utility label-caps {
+  @apply text-xs font-medium tracking-[0.6px] text-gray-500 uppercase;
+}
