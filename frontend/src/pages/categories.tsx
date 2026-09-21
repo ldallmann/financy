@@ -61,7 +61,7 @@ export function CategoriesPage() {
         title="Categorias"
         subtitle="Organize suas transações por categorias"
         action={
-          <Button size="sm" icon={Plus} onClick={() => setDialog({ open: true, category: null })}>
+          <Button size="sm" icon={Plus} className="shrink-0" onClick={() => setDialog({ open: true, category: null })}>
             Nova categoria
           </Button>
         }

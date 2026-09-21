@@ -53,7 +53,7 @@ export function ProfilePage() {
         <div className="flex flex-col items-center gap-4 border-b border-gray-200 pb-8">
           <Avatar name={user.name} size="lg" />
           <div className="flex flex-col items-center gap-1 text-center">
-            <h1 className="text-xl font-bold text-gray-800">{user.name}</h1>
+            <h1 className="max-w-full text-xl font-bold break-words text-gray-800">{user.name}</h1>
             <p className="text-sm text-gray-600">{user.email}</p>
           </div>
         </div>

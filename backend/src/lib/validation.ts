@@ -23,6 +23,8 @@ export const CATEGORY_ICONS = [
 
 export const TRANSACTION_TYPES = ['INCOME', 'EXPENSE'] as const
 
+export const MAX_AMOUNT_CENTS = 2_147_483_647
+
 export const registerSchema = z.object({
   name: z.string().trim().min(2, 'Informe seu nome completo').max(120, 'Nome muito longo'),
   email: z.string().trim().toLowerCase().email('E-mail inválido'),
@@ -54,7 +56,11 @@ export const categoryInputSchema = z.object({
 export const transactionInputSchema = z.object({
   description: z.string().trim().min(1, 'Informe a descrição').max(120, 'Descrição muito longa'),
   type: z.enum(TRANSACTION_TYPES, { message: 'Tipo inválido' }),
-  amount: z.number().int('Valor inválido').positive('O valor deve ser maior que zero'),
+  amount: z
+    .number()
+    .int('Valor inválido')
+    .positive('O valor deve ser maior que zero')
+    .max(MAX_AMOUNT_CENTS, 'Valor acima do limite permitido'),
   date: z
     .string()
     .trim()
@@ -69,15 +75,15 @@ export const transactionInputSchema = z.object({
       }
       return parsed
     }),
-  categoryId: z.string().trim().min(1).optional().nullable().transform((value) => value || null),
+  categoryId: z.string().trim().optional().nullable().transform((value) => value || null),
 })
 
 export const transactionFiltersSchema = z.object({
   search: z.string().trim().optional().nullable(),
   type: z.enum(TRANSACTION_TYPES).optional().nullable(),
   categoryId: z.string().trim().optional().nullable(),
-  month: z.number().int().min(1).max(12).optional().nullable(),
-  year: z.number().int().min(1970).max(2200).optional().nullable(),
-  page: z.number().int().min(1).optional().nullable(),
-  perPage: z.number().int().min(1).max(100).optional().nullable(),
+  month: z.number().int('Mês inválido').min(1, 'Mês inválido').max(12, 'Mês inválido').optional().nullable(),
+  year: z.number().int('Ano inválido').min(1970, 'Ano inválido').max(2200, 'Ano inválido').optional().nullable(),
+  page: z.number().int('Página inválida').min(1, 'Página inválida').optional().nullable(),
+  perPage: z.number().int('Quantidade por página inválida').min(1, 'Quantidade por página inválida').max(100, 'Quantidade por página inválida').optional().nullable(),
 })

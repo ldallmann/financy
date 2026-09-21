@@ -86,7 +86,7 @@ export function TransactionsPage() {
         title="Transações"
         subtitle="Gerencie todas as suas transações financeiras"
         action={
-          <Button size="sm" icon={Plus} onClick={() => setDialog({ open: true, transaction: null })}>
+          <Button size="sm" icon={Plus} className="shrink-0" onClick={() => setDialog({ open: true, transaction: null })}>
             Nova transação
           </Button>
         }

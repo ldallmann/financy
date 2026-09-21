@@ -24,10 +24,10 @@ export function ConfirmDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent title={title} description={description}>
         <div className="flex gap-3">
-          <Button variant="outline" fullWidth onClick={() => onOpenChange(false)} disabled={loading}>
+          <Button variant="outline" className="flex-1" onClick={() => onOpenChange(false)} disabled={loading}>
             Cancelar
           </Button>
-          <Button variant="danger" fullWidth onClick={onConfirm} loading={loading}>
+          <Button variant="danger" className="flex-1" onClick={onConfirm} loading={loading}>
             {confirmLabel}
           </Button>
         </div>

@@ -14,14 +14,18 @@ import { CATEGORIES, CATEGORIES_SUMMARY, DASHBOARD, TRANSACTIONS } from '@/graph
 import type { Transaction, TransactionType } from '@/graphql/types'
 import { getErrorMessage } from '@/lib/apollo'
 import { getCategoryColor, getCategoryIcon } from '@/lib/category-meta'
-import { centsToInput, inputToCents, isoToDateInput, todayDateInput } from '@/lib/format'
+import { centsToInput, formatCurrency, inputToCents, isoToDateInput, MAX_AMOUNT_CENTS, todayDateInput } from '@/lib/format'
 import { cn } from '@/lib/utils'
 
 const schema = z.object({
   type: z.enum(['INCOME', 'EXPENSE']),
   description: z.string().trim().min(1, 'Informe a descrição').max(120, 'Descrição muito longa'),
   date: z.string().min(1, 'Informe a data'),
-  amount: z.number().int().positive('Informe um valor maior que zero'),
+  amount: z
+    .number()
+    .int('Valor inválido')
+    .positive('Informe um valor maior que zero')
+    .max(MAX_AMOUNT_CENTS, `Valor máximo permitido: ${formatCurrency(MAX_AMOUNT_CENTS)}`),
   categoryId: z.string(),
 })
 

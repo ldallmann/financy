@@ -16,9 +16,12 @@ export function centsToInput(cents: number): string {
   return new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(cents / 100)
 }
 
+export const MAX_AMOUNT_CENTS = 2_147_483_647
+
 export function inputToCents(value: string): number {
-  const digits = value.replace(/\D/g, '')
-  return digits ? Number.parseInt(digits, 10) : 0
+  const digits = value.replace(/\D/g, '').replace(/^0+(?=\d)/, '')
+  if (!digits) return 0
+  return Math.min(Number.parseInt(digits, 10), MAX_AMOUNT_CENTS)
 }
 
 export function formatShortDate(iso: string): string {

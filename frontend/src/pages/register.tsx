@@ -45,8 +45,9 @@ export function RegisterPage() {
       navigate('/', { replace: true })
     } catch (error) {
       const fields = getFieldErrors(error)
-      if (fields.email) setError('email', { message: fields.email })
-      else toast.error(getErrorMessage(error, 'Não foi possível criar a conta'))
+      const known = (['name', 'email', 'password'] as const).filter((field) => fields[field])
+      for (const field of known) setError(field, { message: fields[field] })
+      if (known.length === 0) toast.error(getErrorMessage(error, 'Não foi possível criar a conta'))
     }
   })
 

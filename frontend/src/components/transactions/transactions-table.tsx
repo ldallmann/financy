@@ -19,7 +19,7 @@ const headerClass = 'label-caps px-6 py-5 font-medium'
 export function TransactionsTable({ transactions, loading = false, onEdit, onDelete }: TransactionsTableProps) {
   return (
     <div className="overflow-x-auto">
-      <table className="w-full min-w-[900px] border-collapse">
+      <table className="w-full min-w-[900px] table-fixed border-collapse">
         <thead>
           <tr className="border-b border-gray-200">
             <th scope="col" className={cn(headerClass, 'text-left')}>
@@ -55,7 +55,7 @@ export function TransactionsTable({ transactions, loading = false, onEdit, onDel
                 <td className="px-6">
                   <div className="flex items-center gap-4">
                     <CategoryIconBox icon={transaction.category?.icon} color={transaction.category?.color} />
-                    <span className="truncate text-base font-medium text-gray-800">{transaction.description}</span>
+                    <span className="min-w-0 truncate text-base font-medium text-gray-800">{transaction.description}</span>
                   </div>
                 </td>
                 <td className="px-6 text-center text-sm whitespace-nowrap text-gray-600">{formatShortDate(transaction.date)}</td>

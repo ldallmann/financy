@@ -25,7 +25,7 @@ export const typeDefs = `
     createdAt: String!
     transactionsCount: Int!
     "Soma em centavos"
-    transactionsTotal: Int!
+    transactionsTotal: Float!
   }
 
   type Transaction {
@@ -51,9 +51,9 @@ export const typeDefs = `
 
   type DashboardSummary {
     "Valores em centavos"
-    balance: Int!
-    monthlyIncome: Int!
-    monthlyExpenses: Int!
+    balance: Float!
+    monthlyIncome: Float!
+    monthlyExpenses: Float!
     month: Int!
     year: Int!
   }
